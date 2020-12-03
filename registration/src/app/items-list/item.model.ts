@@ -1,8 +1,8 @@
 export class Item {
   constructor(
-    private category: string,
-    private name: string,
-    private amount: number,
-    private description: string
+    public category: string,
+    public name: string,
+    public amount: number,
+    public description: string
   ) {}
 }
