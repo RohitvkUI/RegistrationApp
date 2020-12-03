@@ -1,26 +1,23 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from'@angular/common/http'; 
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 
 @Injectable({
-    providedIn: 'root'
-  })
+  providedIn: 'root',
+})
+export class RegistrationModalService {
+  constructor(private http: HttpClient) {}
 
-
-export class RegistrationModalService {  
-    
-    
-    constructor(private http: HttpClient) {}
-
-
-    public validateForm() {
-        return of({
-            "response": {
-                "statusCode": "failed"
-            }
-        });
-    }
-
-
+  public validateForm() {
+    return this.http.get(
+      'https://jsonplaceholder.typicode.com/invalid-url',
+      {}
+    );
+    return of({
+      response: {
+        statusCode: 'success',
+      },
+    });
+  }
 }
