@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { ItemService } from './item.service';
 import { Item } from './item.model';
 
@@ -8,12 +8,17 @@ import { Item } from './item.model';
   styleUrls: ['./items-list.component.css'],
   providers: [ItemService],
 })
-export class ItemsListComponent implements OnInit {
+export class ItemsListComponent implements OnInit, OnChanges {
   items: Item[];
   @Input() fs: string;
   category: string = 'tops';
   constructor(private itemService: ItemService) {}
-
+  ngOnChanges() {
+    this.items = this.itemService
+      .getItemsList()
+      .filter((item) => item.category === this.fs);
+    console.log('on changes', this.fs);
+  }
   ngOnInit() {
     this.items = this.itemService
       .getItemsList()

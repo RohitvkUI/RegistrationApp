@@ -9,6 +9,6 @@ export class AppComponent {
   featureValue: string;
   title = 'registration';
   featureSelected(feature: string) {
-    this.featureValue;
+    this.featureValue = feature;
   }
 }
