@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+
+declare var $: any;
 
 @Component({
   selector: 'app-root',
@@ -9,6 +11,8 @@ export class AppComponent {
   featureValue: string;
   signInStateTxt:string = 'Log in';
   showDropdown:boolean = false;
+  @ViewChild('registrationModalContainer', { read: ViewContainerRef }) registrationModalContainer: ViewContainerRef;
+  @ViewChild('regModal', { read: TemplateRef }) regModal: TemplateRef<any>;
 
 
   title = 'registration';
@@ -25,6 +29,20 @@ export class AppComponent {
   setbackToLogin(){
     this.signInStateTxt = 'Log in';
     this.showDropdown = !this.showDropdown;
+  }
+  removeExistingEmbeddedView(){
+    if (this.registrationModalContainer.length > 0) {
+      this.registrationModalContainer.remove();
+    } else {
+      return;
+    }
+  }
+
+  onRegister(){
+    this.removeExistingEmbeddedView();
+    this.registrationModalContainer.createEmbeddedView(this.regModal);
+    $('#exampleModal').modal('show');
+
   }
 
 }

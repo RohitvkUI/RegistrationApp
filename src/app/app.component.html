@@ -35,8 +35,7 @@
               <a
                 class="nav-link"
                 href="javascript:void(0)"
-                data-toggle="modal"
-                data-target="#exampleModal"
+                (click)="onRegister()"
                 >Register</a
               >
             </li>
@@ -321,5 +320,8 @@
   </div>
 </div>
 
-<app-registration-modal (getName)="setName($event)"></app-registration-modal>
+<ng-container #registrationModalContainer></ng-container>
+<ng-template #regModal>
+  <app-registration-modal (getName)="setName($event)"></app-registration-modal>
+</ng-template>
 <router-outlet></router-outlet>
