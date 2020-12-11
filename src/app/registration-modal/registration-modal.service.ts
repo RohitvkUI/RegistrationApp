@@ -10,14 +10,12 @@ export class RegistrationModalService {
   constructor(private http: HttpClient) {}
 
   public validateForm() {
-    return this.http.get(
-      'https://jsonplaceholder.typicode.com/invalid-url',
-      {}
-    );
+
     return of({
       response: {
         statusCode: 'success',
       },
     });
+    
   }
 }

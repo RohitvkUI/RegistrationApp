@@ -1,12 +1,17 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
+        <div *ngIf="showImage" class="modal-header">
+          <a href="#" class="header-img-container">
+            <img class="header-img" src="../../assets/discover bank.png" alt=""/>
+          </a>
+        </div>
         <div class="modal-body">
           <div *ngIf="!formSubmitted" class="form-before-submission">
             <form>
               <div class="form-group">
                 <label for="exampleInputName">Name</label>
-                <input type="email" class="form-control" id="exampleInputName" aria-describedby="name" placeholder="Jane Doe">
+                <input #fName="ngModel" ngModel type="email" class="form-control" name="exampleInputName" id="exampleInputName" aria-describedby="name" placeholder="Jane Doe">
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail">Email</label>
@@ -25,7 +30,7 @@
                 <input id="exampleInputExpNum" type="tel" class="form-control" placeholder="MM / YY">
               </div>
             </form>
-            <button type="submit" class="btn btn-primary form-submit-btn" (click)="submitForm()">Submit</button>
+            <button type="submit" class="btn btn-primary form-submit-btn" (click)="submitForm(fName)">Submit</button>
           </div>
           <div *ngIf="formSubmitted" class="form-after-submission">
             <div *ngIf="accountCreation" class="account-created">

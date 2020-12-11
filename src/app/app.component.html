@@ -40,6 +40,22 @@
                 >Register</a
               >
             </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="javascript:void(0)"
+                (click)="toggleDropdown()"
+                >{{signInStateTxt}}</a
+              >
+              <div *ngIf="showDropdown" class="login-dropdown">
+                <ul class="list-group login-list-group">
+                  <li class="list-group-item">Create Account</li>
+                  <li class="list-group-item">Orders</li>
+                  <li class="list-group-item">Account settings</li>
+                  <li class="list-group-item" (click)="setbackToLogin()">Log out</li>
+                </ul>                
+              </div>
+            </li>
           </ul>
         </div>
       </div>
@@ -305,5 +321,5 @@
   </div>
 </div>
 
-<app-registration-modal></app-registration-modal>
+<app-registration-modal (getName)="setName($event)"></app-registration-modal>
 <router-outlet></router-outlet>
